@@ -6,13 +6,13 @@
 
 <title>GRIDDOWN — Offline Knowledge System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
 body {
     margin:0;
-    font-family: 'Inter', sans-serif;
+    font-family:'Inter', sans-serif;
 }
 
 /* HERO */
@@ -25,63 +25,66 @@ body {
     #000;
     color:#e5e7eb;
     text-align:center;
-    padding:100px 20px 80px;
+    padding:80px 20px 60px;
 }
 
-/* TOPO OVERLAY */
+/* TOPO */
 .topo {
     position:absolute;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    pointer-events:none;
     opacity:0.05;
-    background-image: url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236b7280' stroke-width='1'%3E%3Cpath d='M0 200 Q200 100 400 200 T800 200'/%3E%3Cpath d='M0 300 Q200 200 400 300 T800 300'/%3E%3Cpath d='M0 400 Q200 300 400 400 T800 400'/%3E%3Cpath d='M0 500 Q200 400 400 500 T800 500'/%3E%3Cpath d='M0 600 Q200 500 400 600 T800 600'/%3E%3C/g%3E%3C/svg%3E");
-    background-size:cover;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236b7280' stroke-width='1'%3E%3Cpath d='M0 200 Q200 100 400 200 T800 200'/%3E%3Cpath d='M0 300 Q200 200 400 300 T800 300'/%3E%3Cpath d='M0 400 Q200 300 400 400 T800 400'/%3E%3Cpath d='M0 500 Q200 400 400 500 T800 500'/%3E%3Cpath d='M0 600 Q200 500 400 600 T800 600'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* LOGO */
+/* LOGO (NOW DOMINANT) */
 .logo {
-    font-family: 'Rajdhani', sans-serif;
-    font-size:32px;
-    letter-spacing:6px;
+    font-family:'Rajdhani', sans-serif;
+    font-size:56px;
+    letter-spacing:8px;
     font-weight:700;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
 /* HEADLINE */
 h1 {
-    font-size:34px;
+    font-size:30px;
     line-height:1.4;
-    margin-bottom:20px;
-    font-weight:500;
+    margin-bottom:15px;
 }
 
 /* OLIVE ACCENT */
 .highlight {
     color:#6b7d3c;
-    text-shadow:0 0 10px rgba(107,125,60,0.4);
+    text-shadow:0 0 8px rgba(107,125,60,0.3);
 }
 
 .sub {
     max-width:600px;
     margin:auto;
     color:#9ca3af;
-    font-size:16px;
-    margin-bottom:30px;
+    font-size:15px;
+    margin-bottom:25px;
 }
 
 /* BUTTONS */
 .button {
     display:inline-block;
     padding:12px 22px;
-    background:#6b7d3c;
-    color:white;
     border-radius:6px;
     text-decoration:none;
     margin:5px;
     font-size:14px;
+}
+
+/* PRIMARY = WHITE */
+.button.primary {
+    background:#ffffff;
+    color:#000;
+    font-weight:500;
 }
 
 .button.secondary {
@@ -90,62 +93,58 @@ h1 {
     color:#e5e7eb;
 }
 
-/* IMAGE */
-.product-image {
+/* FEATURE GRID (BACK TO ORIGINAL STYLE) */
+.features {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
     margin-top:40px;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.product-image img {
-    max-width:700px;
-    width:100%;
-    border-radius:10px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+.card {
+    background:#111;
+    border:1px solid #1f2933;
+    padding:20px;
+    border-radius:8px;
+    text-align:left;
 }
 
-/* MAIN WHITE */
+.card h3 {
+    margin:0 0 8px 0;
+    font-size:15px;
+    color:#fff;
+}
+
+.card p {
+    color:#9ca3af;
+    font-size:13px;
+}
+
+/* WHITE SECTION */
 .main {
     background:#ffffff;
     color:#111827;
     border-top-left-radius:20px;
     border-top-right-radius:20px;
+    margin-top:60px;
     padding-top:60px;
 }
 
 .container {
-    max-width:1000px;
+    max-width:900px;
     margin:auto;
     padding:40px 20px;
 }
 
-/* FEATURES */
-.feature-strip {
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    margin-bottom:60px;
-}
-
-.feature {
-    background:#f9fafb;
-    border:1px solid #e5e7eb;
-    padding:20px;
-    border-radius:8px;
-}
-
-.feature strong {
-    display:block;
-    color:#000;
-    margin-bottom:5px;
-}
-
-/* SECTIONS */
 .section {
     margin-bottom:60px;
 }
 
 .alt-font {
-    font-family: 'Rajdhani', sans-serif;
-    letter-spacing:1px;
+    font-family:'Rajdhani', sans-serif;
 }
 
 h2 {
@@ -157,7 +156,6 @@ p {
     color:#374151;
 }
 
-/* FOOTER */
 .footer {
     text-align:center;
     color:#9ca3af;
@@ -181,14 +179,30 @@ Access critical knowledge.<br>
 </h1>
 
 <p class="sub">
-A self-contained offline knowledge system that stores, retrieves, and helps you use trusted information locally — so you're not dependent on external systems you don’t control.
+A self-contained offline knowledge system that stores, retrieves, and helps you use trusted information locally.
 </p>
 
-<a href="mailto:hello@getgriddown.com" class="button">Join the Waitlist</a>
+<a href="mailto:hello@getgriddown.com" class="button primary">Join the Waitlist</a>
 <a href="#learn" class="button secondary">Learn More</a>
 
-<div class="product-image">
-    <img src="product.png" alt="GRIDDOWN Product">
+<!-- FEATURE GRID -->
+<div class="features">
+
+<div class="card">
+<h3>Offline Knowledge</h3>
+<p>Structured information stored locally and always accessible.</p>
+</div>
+
+<div class="card">
+<h3>AI-Assisted Retrieval</h3>
+<p>Ask questions and get structured answers grounded in real sources.</p>
+</div>
+
+<div class="card">
+<h3>Self-Contained System</h3>
+<p>Runs entirely on your device. No external calls.</p>
+</div>
+
 </div>
 
 </div>
@@ -196,25 +210,6 @@ A self-contained offline knowledge system that stores, retrieves, and helps you 
 <div class="main">
 
 <div class="container">
-
-<div class="feature-strip">
-
-<div class="feature">
-<strong>Offline Knowledge</strong>
-Structured information stored locally and always accessible without internet dependency.
-</div>
-
-<div class="feature">
-<strong>AI-Assisted Retrieval</strong>
-Ask questions in plain language and get structured answers grounded in real sources.
-</div>
-
-<div class="feature">
-<strong>Self-Contained System</strong>
-Runs entirely on your device. No setup complexity. No external calls.
-</div>
-
-</div>
 
 <div class="section" id="learn">
 
@@ -226,7 +221,7 @@ infrastructure outages, or restricted networks — that assumption breaks.
 </p>
 
 <p>
-GRIDDOWN gives you direct access to the information you rely on, without depending on systems you don’t control.
+GRIDDOWN gives you direct access to the information you rely on.
 </p>
 
 </div>
