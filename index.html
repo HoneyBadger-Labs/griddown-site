@@ -35,39 +35,18 @@ body {
     left:0;
     width:100%;
     height:100%;
-    opacity:0.15;
+    opacity:0.05;
     pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236b7280' stroke-width='1'%3E%3Cpath d='M0 200 Q200 100 400 200 T800 200'/%3E%3Cpath d='M0 300 Q200 200 400 300 T800 300'/%3E%3Cpath d='M0 400 Q200 300 400 400 T800 400'/%3E%3Cpath d='M0 500 Q200 400 400 500 T800 500'/%3E%3Cpath d='M0 600 Q200 500 400 600 T800 600'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* LOGO (NOW DOMINANT) */
+/* LOGO */
 .logo {
     font-family:'Rajdhani', sans-serif;
     font-size:96px;
     letter-spacing:10px;
     font-weight:700;
-    margin-bottom:25px;
-}
-
-/* HEADLINE */
-h1 {
-    font-size:26px;
-    line-height:1.4;
-    margin-bottom:15px;
-}
-
-/* OLIVE ACCENT */
-.highlight {
-    color:#6b7d3c;
-    text-shadow:0 0 8px rgba(107,125,60,0.3);
-}
-
-.sub {
-    max-width:600px;
-    margin:auto;
-    color:#9ca3af;
-    font-size:15px;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 /* BUTTONS */
@@ -80,7 +59,6 @@ h1 {
     font-size:14px;
 }
 
-/* PRIMARY = WHITE */
 .button.primary {
     background:#ffffff;
     color:#000;
@@ -93,15 +71,33 @@ h1 {
     color:#e5e7eb;
 }
 
-/* FEATURE GRID (BACK TO ORIGINAL STYLE) */
+/* HEADLINE */
+h1 {
+    font-size:26px;
+    line-height:1.4;
+    margin-bottom:10px;
+}
+
+.highlight {
+    color:#6b7d3c;
+    text-shadow:0 0 8px rgba(107,125,60,0.3);
+}
+
+.sub {
+    max-width:600px;
+    margin:auto;
+    color:#9ca3af;
+    font-size:15px;
+    margin-bottom:40px;
+}
+
+/* FEATURES */
 .features {
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:15px;
-    margin-top:40px;
     max-width:900px;
-    margin-left:auto;
-    margin-right:auto;
+    margin:40px auto 0;
 }
 
 .card {
@@ -115,6 +111,8 @@ h1 {
 .card h3 {
     font-size:17px;
     font-weight:600;
+    margin-bottom:6px;
+    color:#fff;
 }
 
 .card p {
@@ -122,7 +120,7 @@ h1 {
     font-size:13px;
 }
 
-/* WHITE SECTION */
+/* MAIN */
 .main {
     background:#ffffff;
     color:#111827;
@@ -184,19 +182,6 @@ Access critical knowledge.<br>
 A self-contained offline knowledge system that stores, retrieves, and helps you use trusted information locally.
 </p>
 
-<h1>
-Access critical knowledge.<br>
-<span class="highlight">Without relying on the internet.</span>
-</h1>
-
-<p class="sub">
-A self-contained offline knowledge system that stores, retrieves, and helps you use trusted information locally.
-</p>
-
-<a href="mailto:hello@getgriddown.com" class="button primary">Join the Waitlist</a>
-<a href="#learn" class="button secondary">Learn More</a>
-
-<!-- FEATURE GRID -->
 <div class="features">
 
 <div class="card">
