@@ -3,322 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GRIDDOWN — Offline Knowledge System</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+<title>GRID DOWN — Offline AI Knowledge System</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-
-body {
-    margin:0;
-    font-family:'Inter', sans-serif;
-    background:#000;
+:root {
+  --olive: #6b7d3c;
+  --bg: #080a06;
+  --bg2: #0d0f0a;
+  --bg3: #111408;
+  --border: rgba(107,125,60,0.2);
+  --border-dim: rgba(255,255,255,0.06);
+  --text: #e5e7eb;
+  --dim: #6b7280;
+  --white: #ffffff;
 }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-/* HERO */
-.hero {
-    position:relative;
-    overflow:hidden;
-    background:
-    radial-gradient(circle at 20% 20%, #1a1a1a 0%, transparent 40%),
-    radial-gradient(circle at 80% 0%, #111 0%, transparent 40%),
-    #000;
-    color:#e5e7eb;
-    padding:80px 20px 60px;
-}
-
-/* TOPO */
 .topo {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    opacity:0.05;
-    pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236b7280' stroke-width='1'%3E%3Cpath d='M0 200 Q200 100 400 200 T800 200'/%3E%3Cpath d='M0 300 Q200 200 400 300 T800 300'/%3E%3Cpath d='M0 400 Q200 300 400 400 T800 400'/%3E%3Cpath d='M0 500 Q200 400 400 500 T800 500'/%3E%3Cpath d='M0 600 Q200 500 400 600 T800 600'/%3E%3C/g%3E%3C/svg%3E");
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg width='1200' height='800' viewBox='0 0 1200 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236b7280' stroke-width='1'%3E%3Cpath d='M-100 150 Q200 80 500 150 T1100 150 T1700 150'/%3E%3Cpath d='M-100 250 Q200 180 500 250 T1100 250 T1700 250'/%3E%3Cpath d='M-100 350 Q200 280 500 350 T1100 350 T1700 350'/%3E%3Cpath d='M-100 450 Q200 380 500 450 T1100 450 T1700 450'/%3E%3Cpath d='M-100 550 Q200 480 500 550 T1100 550 T1700 550'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
 }
 
-/* SPLIT */
+nav {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1100px; margin: 0 auto; padding: 28px 24px;
+}
+.nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 4px; color: var(--white); }
+.nav-status { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--olive); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--olive); animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* HERO — split layout */
+.hero { position: relative; overflow: hidden; padding: 48px 24px 80px; }
 .hero-inner {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    max-width:1100px;
-    margin:auto;
-    gap:50px;
+  display: grid; grid-template-columns: 1fr 1.15fr;
+  align-items: center; gap: 56px;
+  max-width: 1100px; margin: 0 auto;
 }
-
-/* LEFT */
-.hero-left {
-    flex:1;
+.hero-wordmark {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(56px, 7.5vw, 100px);
+  font-weight: 700; letter-spacing: 8px;
+  color: var(--white); line-height: 1; margin-bottom: 24px;
 }
+.hero-headline { font-size: clamp(20px, 2.6vw, 28px); font-weight: 500; line-height: 1.35; margin-bottom: 16px; }
+.hero-headline .line1 { color: var(--white); display: block; }
+.hero-headline .line2 { color: var(--olive); display: block; }
+.hero-body { font-size: 15px; line-height: 1.75; color: var(--dim); max-width: 440px; margin-bottom: 28px; }
+.hero-body strong { color: var(--text); font-weight: 500; }
 
-/* LOGO */
-.logo {
-    font-family:'Rajdhani', sans-serif;
-    font-size:72px;
-    letter-spacing:8px;
-    font-weight:700;
-    margin-bottom:20px;
+.waitlist-wrap { display: flex; flex-direction: column; gap: 12px; }
+.waitlist-form { display: flex; max-width: 400px; }
+.waitlist-form input {
+  flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-right: none; color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 12px 16px; border-radius: 6px 0 0 6px; outline: none;
+  transition: border-color 0.2s, background 0.2s;
 }
-
-/* TEXT */
-h1 {
-    font-size:28px;
-    line-height:1.4;
-    margin-bottom:10px;
+.waitlist-form input::placeholder { color: #4b5563; }
+.waitlist-form input:focus { border-color: var(--olive); background: rgba(107,125,60,0.06); }
+.waitlist-form button {
+  background: var(--olive); color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; padding: 12px 20px;
+  border: none; border-radius: 0 6px 6px 0; cursor: pointer; white-space: nowrap; transition: background 0.2s;
 }
+.waitlist-form button:hover { background: #7d9445; }
+.form-note { font-size: 12px; color: var(--dim); }
+.form-note a { color: var(--olive); text-decoration: none; }
+.success-msg { display: none; font-size: 12px; color: var(--olive); letter-spacing: 1px; text-transform: uppercase; }
 
-.highlight {
-    color:#6b7d3c;
-    text-shadow:0 0 8px rgba(107,125,60,0.3);
-}
-
-.sub {
-    color:#9ca3af;
-    font-size:15px;
-    margin-bottom:25px;
-    max-width:500px;
-}
-
-/* BUTTONS */
-.button {
-    display:inline-block;
-    padding:12px 22px;
-    border-radius:6px;
-    text-decoration:none;
-    margin-right:10px;
-    font-size:14px;
-}
-
-.button.primary {
-    background:#ffffff;
-    color:#000;
-    font-weight:500;
-}
-
-.button.secondary {
-    background:transparent;
-    border:1px solid #374151;
-    color:#e5e7eb;
-}
-
-/* RIGHT UI */
-.hero-right {
-    flex:1;
-}
-
-.screen-label {
-    font-size:11px;
-    letter-spacing:2px;
-    color:#6b7d3c;
-    margin-bottom:10px;
-}
-
+.hero-right { position: relative; }
+.screen-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--olive); margin-bottom: 10px; }
 .screen-frame {
-    border:1px solid #1f2933;
-    border-radius:8px;
-    overflow:hidden;
-    background:#000;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  border: 1px solid rgba(107,125,60,0.3); border-radius: 10px;
+  overflow: hidden; background: #000;
+  box-shadow: 0 0 0 1px rgba(107,125,60,0.08), 0 40px 80px rgba(0,0,0,0.7);
 }
-
-.screen-frame img {
-    width:100%;
-    display:block;
-    opacity:0.92;
-}
+.screen-frame img { width: 100%; display: block; opacity: 0.93; }
 
 /* FEATURES */
-.features {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    max-width:1000px;
-    margin:50px auto 0;
+.feature-strip { border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); background: var(--bg2); }
+.features-inner {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; max-width: 1000px; margin: 0 auto; background: var(--border-dim);
 }
+.feature { background: var(--bg2); padding: 36px 28px; }
+.feature-icon { width: 28px; height: 28px; margin-bottom: 14px; opacity: 0.65; }
+.feature h3 { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
+.feature p { font-size: 14px; line-height: 1.65; color: var(--dim); }
 
-.card {
-    background:#111;
-    border:1px solid #1f2933;
-    padding:20px;
-    border-radius:8px;
+/* ABOUT */
+.about { max-width: 760px; margin: 0 auto; padding: 96px 24px; }
+.section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--olive); margin-bottom: 18px; }
+.section-title {
+  font-family: 'Rajdhani', sans-serif; font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600; letter-spacing: 2px; line-height: 1.15; color: var(--white); margin-bottom: 24px;
 }
+.body-text { font-size: 15px; line-height: 1.8; color: #9ca3af; margin-bottom: 16px; max-width: 620px; }
+.body-text strong { color: var(--text); font-weight: 500; }
+.about-divider { border: none; border-top: 1px solid var(--border-dim); margin: 52px 0; }
 
-.card h3 {
-    font-size:17px;
-    font-weight:600;
-    margin-bottom:6px;
+/* MODULES */
+.module-section { background: var(--bg2); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); padding: 80px 24px; }
+.module-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; }
+.module-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(22px, 3vw, 34px); font-weight: 600; letter-spacing: 2px; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+.module-body { font-size: 14px; line-height: 1.75; color: var(--dim); margin-bottom: 22px; }
+.module-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--olive); border: 1px solid var(--border); padding: 4px 10px; border-radius: 3px; }
+.module-screenshot { border: 1px solid rgba(107,125,60,0.25); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.module-screenshot img { width: 100%; display: block; opacity: 0.9; }
+
+/* SPECS */
+.specs-section { max-width: 760px; margin: 0 auto; padding: 80px 24px; }
+.specs-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border-dim); border: 1px solid var(--border-dim);
+  border-radius: 8px; overflow: hidden; margin-top: 32px;
 }
+.spec { background: var(--bg); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.spec-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #4b5563; }
+.spec-value { font-size: 13px; color: var(--text); font-weight: 500; text-align: right; }
+.spec-value.green { color: var(--olive); }
 
-.card p {
-    color:#9ca3af;
-    font-size:13px;
+/* CTA */
+.cta-section { background: var(--bg3); border-top: 1px solid var(--border-dim); padding: 100px 24px; text-align: center; }
+.cta-inner { max-width: 520px; margin: 0 auto; }
+.cta-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: 3px; color: var(--white); margin-bottom: 14px; line-height: 1.1; }
+.cta-sub { font-size: 15px; line-height: 1.7; color: var(--dim); margin-bottom: 32px; }
+.cta-form { display: flex; max-width: 380px; margin: 0 auto 14px; }
+.cta-form input {
+  flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-right: none; color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 12px 16px; border-radius: 6px 0 0 6px; outline: none; transition: border-color 0.2s;
 }
-
-/* WHITE SECTION */
-.main {
-    background:#ffffff;
-    color:#111827;
-    border-top-left-radius:20px;
-    border-top-right-radius:20px;
-    margin-top:60px;
-    padding-top:60px;
+.cta-form input::placeholder { color: #4b5563; }
+.cta-form input:focus { border-color: var(--olive); }
+.cta-form button {
+  background: var(--white); color: #000; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; padding: 12px 20px;
+  border: none; border-radius: 0 6px 6px 0; cursor: pointer; white-space: nowrap; transition: background 0.2s;
 }
+.cta-form button:hover { background: #e5e7eb; }
+.cta-note { font-size: 12px; color: #374151; }
+.cta-note a { color: var(--olive); text-decoration: none; }
 
-.container {
-    max-width:900px;
-    margin:auto;
-    padding:40px 20px;
+footer { border-top: 1px solid var(--border-dim); }
+.footer-wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1100px; margin: 0 auto; padding: 28px 24px; flex-wrap: wrap; gap: 10px;
 }
+.footer-brand { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 3px; color: #374151; }
+.footer-note { font-size: 11px; color: #1f2937; }
 
-.section {
-    margin-bottom:60px;
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .features-inner { grid-template-columns: 1fr; }
+  .module-inner { grid-template-columns: 1fr; }
+  .specs-grid { grid-template-columns: 1fr; }
+  .waitlist-form { flex-direction: column; max-width: 100%; }
+  .waitlist-form input { border-right: 1px solid var(--border); border-radius: 6px 6px 0 0; border-bottom: none; }
+  .waitlist-form button { border-radius: 0 0 6px 6px; }
+  .cta-form { flex-direction: column; max-width: 100%; }
+  .cta-form input { border-right: 1px solid var(--border); border-radius: 6px 6px 0 0; border-bottom: none; }
+  .cta-form button { border-radius: 0 0 6px 6px; }
 }
-
-.alt-font {
-    font-family:'Rajdhani', sans-serif;
-}
-
-h2 {
-    font-size:22px;
-    margin-bottom:15px;
-}
-
-p {
-    color:#374151;
-}
-
-.footer {
-    text-align:center;
-    color:#9ca3af;
-    padding:40px;
-    font-size:13px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-
-.hero-inner {
-    flex-direction:column;
-}
-
-.logo {
-    font-size:48px;
-}
-
-.features {
-    grid-template-columns:1fr;
-}
-
-}
-
 </style>
 </head>
-
 <body>
 
-<div class="hero">
-<div class="topo"></div>
+<nav>
+  <div class="nav-logo">GRIDDOWN</div>
+  <div class="nav-status"><div class="dot"></div>Prototype in development</div>
+</nav>
 
-<div class="hero-inner">
+<section class="hero">
+  <div class="topo"></div>
+  <div class="hero-inner">
 
-<!-- LEFT -->
-<div class="hero-left">
+    <div class="hero-left">
+      <div class="hero-wordmark">GRIDDOWN</div>
+      <h1 class="hero-headline">
+        <span class="line1">Access critical knowledge.</span>
+        <span class="line2">Without relying on the internet.</span>
+      </h1>
+      <p class="hero-body">
+        A <strong>complete AI knowledge system on a thumb drive</strong>. Plug into any Mac and ask it anything — medical, farming, survival, security. Answers from vetted sources. Zero internet. Zero telemetry.
+      </p>
+      <div class="waitlist-wrap">
+        <form class="waitlist-form" onsubmit="handleSubmit(event,'hero-success')">
+          <input type="email" placeholder="your@email.com" required>
+          <button type="submit">Join the Waitlist</button>
+        </form>
+        <div class="form-note">Early testers get priority access. &nbsp;<a href="mailto:hello@getgriddown.com">Or email us →</a></div>
+        <div class="success-msg" id="hero-success">✓ You're on the list. We'll be in touch.</div>
+      </div>
+    </div>
 
-<div class="logo">GRIDDOWN</div>
+    <div class="hero-right">
+      <div class="screen-label">Live system — offline mode</div>
+      <div class="screen-frame">
+        <img src="ui.png" alt="Grid Down interface running offline">
+      </div>
+    </div>
 
-<h1>
-Access critical knowledge.<br>
-<span class="highlight">Without relying on the internet.</span>
-</h1>
+  </div>
+</section>
 
-<p class="sub">
-A self-contained offline knowledge system that stores, retrieves, and helps you use trusted information locally.
-</p>
-
-<a href="mailto:hello@getgriddown.com" class="button primary">Join the Waitlist</a>
-<a href="#learn" class="button secondary">Learn More</a>
-
+<div class="feature-strip">
+  <div class="features-inner">
+    <div class="feature fade-in">
+      <svg class="feature-icon" viewBox="0 0 28 28" fill="none">
+        <rect x="3" y="5" width="22" height="18" rx="2" stroke="#6b7d3c" stroke-width="1.5"/>
+        <path d="M3 10h22" stroke="#6b7d3c" stroke-width="1.5"/>
+        <path d="M9 16l3 3 6-6" stroke="#6b7d3c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Truly Offline</h3>
+      <p>No internet, no API calls, no cloud sync. Everything runs locally on your machine from the drive.</p>
+    </div>
+    <div class="feature fade-in" style="transition-delay:.1s">
+      <svg class="feature-icon" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="#6b7d3c" stroke-width="1.5"/>
+        <path d="M14 9v5l3.5 3.5" stroke="#6b7d3c" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3>Source-Anchored AI</h3>
+      <p>Every answer traced to a specific field manual. No hallucinations — just cited, structured responses.</p>
+    </div>
+    <div class="feature fade-in" style="transition-delay:.2s">
+      <svg class="feature-icon" viewBox="0 0 28 28" fill="none">
+        <rect x="9" y="3" width="10" height="4" rx="1" stroke="#6b7d3c" stroke-width="1.5"/>
+        <rect x="5" y="7" width="18" height="18" rx="2" stroke="#6b7d3c" stroke-width="1.5"/>
+        <path d="M14 13v6M11 16h6" stroke="#6b7d3c" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <h3>One Drive. Everything.</h3>
+      <p>Plug into any Mac. Double-click to launch. Nothing installs on the host. Unplug and it's gone.</p>
+    </div>
+  </div>
 </div>
 
-<!-- RIGHT -->
-<div class="hero-right">
+<section class="about">
+  <div class="section-label">Why it exists</div>
+  <h2 class="section-title fade-in">The internet won't always be there.</h2>
+  <p class="body-text fade-in">Most AI tools assume a working connection. Grid Down doesn't. Whether you're off-grid by choice or circumstance — <strong>hurricanes, outages, wildfires, infrastructure failure</strong> — you still need access to knowledge.</p>
+  <p class="body-text fade-in">And beyond emergencies: some people just don't want their questions going to a server. Grid Down is <strong>completely private by design</strong>. Nothing leaves your machine. Not your queries, not your documents, not your location.</p>
+  <div class="about-divider"></div>
+  <div class="section-label">How it's different</div>
+  <h2 class="section-title fade-in">Not just documents. Answers.</h2>
+  <p class="body-text fade-in">Most offline solutions give you a pile of PDFs. Grid Down gives you an AI that has <strong>read all of them</strong> — and can answer your specific question with citations, step-by-step protocols, and links to the exact source page.</p>
+  <p class="body-text fade-in">Ask it how to treat a wound when there's no hospital. Ask about canning safety for a specific food. Ask how to read a topographic map. It knows — and it shows its work.</p>
+</section>
 
-<div class="screen-label">LIVE SYSTEM — OFFLINE MODE</div>
+<section class="module-section">
+  <div class="module-inner">
+    <div class="module-copy fade-in">
+      <div class="section-label">Inside the system</div>
+      <h2 class="module-title">11 Knowledge Modules. Hundreds of Topics.</h2>
+      <p class="module-body">Each module is a curated library of vetted documents — Army field manuals, USDA guides, homesteading references — with an AI trained to search and cite them precisely.</p>
+      <div class="module-tags">
+        <span class="tag">Medicine</span>
+        <span class="tag">Farming</span>
+        <span class="tag">Water</span>
+        <span class="tag">Shelter</span>
+        <span class="tag">Energy</span>
+        <span class="tag">Security</span>
+        <span class="tag">Comms</span>
+        <span class="tag">Navigation</span>
+        <span class="tag">Weapons</span>
+        <span class="tag">Mental Health</span>
+        <span class="tag">Vehicles</span>
+      </div>
+    </div>
+    <div class="module-screenshot fade-in" style="transition-delay:.15s">
+      <img src="module.png" alt="Farming and Homestead knowledge module">
+    </div>
+  </div>
+</section>
 
-<div class="screen-frame">
-<img src="ui.png" alt="GRIDDOWN Interface">
-</div>
+<section class="specs-section">
+  <div class="section-label">System specs</div>
+  <h2 class="section-title fade-in">Built lean. Runs anywhere.</h2>
+  <div class="specs-grid fade-in">
+    <div class="spec"><span class="spec-label">Hardware</span><span class="spec-value">64GB USB-C drive</span></div>
+    <div class="spec"><span class="spec-label">AI Model</span><span class="spec-value">Mistral 7B · on-device</span></div>
+    <div class="spec"><span class="spec-label">Compatible</span><span class="spec-value">macOS 12+ · Apple Silicon &amp; Intel</span></div>
+    <div class="spec"><span class="spec-label">Launch</span><span class="spec-value">One double-click</span></div>
+    <div class="spec"><span class="spec-label">Document library</span><span class="spec-value">~500MB curated field manuals</span></div>
+    <div class="spec"><span class="spec-label">RAM required</span><span class="spec-value">8GB min · 16GB recommended</span></div>
+    <div class="spec"><span class="spec-label">Telemetry</span><span class="spec-value green">Zero · air-gapped</span></div>
+    <div class="spec"><span class="spec-label">Installation</span><span class="spec-value green">Nothing on host machine</span></div>
+  </div>
+</section>
 
-</div>
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label">Early access</div>
+    <h2 class="cta-title fade-in">GET ON THE LIST.</h2>
+    <p class="cta-sub fade-in">We're looking for early testers. If you want to be among the first to run Grid Down, drop your email. No spam — just a heads up when it's ready.</p>
+    <form class="cta-form fade-in" onsubmit="handleSubmit(event,'cta-success')">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Join Waitlist</button>
+    </form>
+    <div class="cta-note">Or reach us at <a href="mailto:hello@getgriddown.com">hello@getgriddown.com</a></div>
+    <div class="success-msg" id="cta-success" style="margin-top:16px">✓ You're on the list. We'll be in touch.</div>
+  </div>
+</section>
 
-</div>
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">GRIDDOWN</div>
+    <div class="footer-note">A HoneyBadger Labs project &nbsp;·&nbsp; All included field manuals are public domain or freely licensed</div>
+  </div>
+</footer>
 
-<!-- FEATURES -->
-<div class="features">
-
-<div class="card">
-<h3>Offline Knowledge</h3>
-<p>Structured information stored locally and always accessible.</p>
-</div>
-
-<div class="card">
-<h3>AI-Assisted Retrieval</h3>
-<p>Ask questions and get structured answers grounded in real sources.</p>
-</div>
-
-<div class="card">
-<h3>Self-Contained System</h3>
-<p>Runs entirely on your device. No external calls.</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="main">
-
-<div class="container">
-
-<div class="section" id="learn">
-
-<h2 class="alt-font">Why it exists</h2>
-
-<p>
-Most systems assume constant connectivity. In real-world conditions — remote environments,
-infrastructure outages, or restricted networks — that assumption breaks.
-</p>
-
-<p>
-GRIDDOWN gives you direct access to the information you rely on.
-</p>
-
-</div>
-
-<div class="section">
-
-<h2 class="alt-font">Why it’s different</h2>
-
-<p>
-Most offline solutions give you access to documents.
-</p>
-
-<p>
-GRIDDOWN helps you get answers — backed by those documents.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-GRIDDOWN — A HoneyBadger Labs Project
-</div>
+<script>
+function handleSubmit(e, id) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  window.location.href = 'mailto:hello@getgriddown.com?subject=Grid Down Early Access&body=Add me to the early access list: ' + email;
+  e.target.style.display = 'none';
+  document.getElementById(id).style.display = 'block';
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
