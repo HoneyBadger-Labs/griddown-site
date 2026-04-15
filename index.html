@@ -10,6 +10,7 @@
   --olive: #6b7d3c;
   --bg: #080a06;
   --bg2: #0d0f0a;
+  --bg-feature: #1a1f12;
   --bg3: #111408;
   --border: rgba(107,125,60,0.2);
   --border-dim: rgba(255,255,255,0.06);
@@ -27,14 +28,18 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   background-size: cover;
 }
 
+.nav-wrap { background: var(--olive); width: 100%; position: relative; z-index: 10; }
 nav {
-  position: relative; z-index: 10;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1100px; margin: 0 auto; padding: 28px 24px;
+  display: flex; align-items: center;
+  max-width: 1100px; margin: 0 auto; padding: 16px 24px;
 }
-.nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 4px; color: var(--white); }
-.nav-status { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--olive); }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--olive); animation: pulse 2.5s ease-in-out infinite; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.9);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 /* HERO — split layout */
@@ -86,12 +91,12 @@ nav {
 .screen-frame img { width: 100%; display: block; opacity: 0.93; }
 
 /* FEATURES */
-.feature-strip { border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); background: var(--bg2); }
+.feature-strip { border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); background: #141a0d; }
 .features-inner {
   display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 1px; max-width: 1000px; margin: 0 auto; background: var(--border-dim);
+  gap: 1px; max-width: 1000px; margin: 0 auto; background: rgba(107,125,60,0.15);
 }
-.feature { background: var(--bg2); padding: 36px 28px; }
+.feature { background: var(--bg-feature); padding: 36px 28px; }
 .feature-icon { width: 28px; height: 28px; margin-bottom: 14px; opacity: 0.65; }
 .feature h3 { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
 .feature p { font-size: 14px; line-height: 1.65; color: var(--dim); }
@@ -130,7 +135,6 @@ nav {
 .spec-value.green { color: var(--olive); }
 
 /* CTA */
-.cta-section { background: var(--bg3); border-top: 1px solid var(--border-dim); padding: 100px 24px; text-align: center; }
 .cta-inner { max-width: 520px; margin: 0 auto; }
 .cta-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: 3px; color: var(--white); margin-bottom: 14px; line-height: 1.1; }
 .cta-sub { font-size: 15px; line-height: 1.7; color: var(--dim); margin-bottom: 32px; }
@@ -178,10 +182,14 @@ footer { border-top: 1px solid var(--border-dim); }
 </head>
 <body>
 
+<div class="nav-wrap">
 <nav>
-  <div class="nav-logo">GRIDDOWN</div>
-  <div class="nav-status"><div class="dot"></div>Prototype in development</div>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </nav>
+</div>
 
 <section class="hero">
   <div class="topo"></div>
@@ -201,7 +209,6 @@ footer { border-top: 1px solid var(--border-dim); }
           <input type="email" placeholder="your@email.com" required>
           <button type="submit">Join the Waitlist</button>
         </form>
-        <div class="form-note">Early testers get priority access. &nbsp;<a href="mailto:hello@getgriddown.com">Or email us →</a></div>
         <div class="success-msg" id="hero-success">✓ You're on the list. We'll be in touch.</div>
       </div>
     </div>
@@ -247,7 +254,7 @@ footer { border-top: 1px solid var(--border-dim); }
   </div>
 </div>
 
-<section class="about">
+<section class="about" id="about">
   <div class="section-label">Why it exists</div>
   <h2 class="section-title fade-in">The internet won't always be there.</h2>
   <p class="body-text fade-in">Most AI tools assume a working connection. Grid Down doesn't. Whether you're off-grid by choice or circumstance — <strong>hurricanes, outages, wildfires, infrastructure failure</strong> — you still need access to knowledge.</p>
@@ -286,38 +293,22 @@ footer { border-top: 1px solid var(--border-dim); }
 </section>
 
 <section class="specs-section">
-  <div class="section-label">System specs</div>
   <h2 class="section-title fade-in">Built lean. Runs anywhere.</h2>
   <div class="specs-grid fade-in">
     <div class="spec"><span class="spec-label">Hardware</span><span class="spec-value">64GB USB-C drive</span></div>
     <div class="spec"><span class="spec-label">AI Model</span><span class="spec-value">Mistral 7B · on-device</span></div>
-    <div class="spec"><span class="spec-label">Compatible</span><span class="spec-value">macOS 12+ · Apple Silicon &amp; Intel</span></div>
     <div class="spec"><span class="spec-label">Launch</span><span class="spec-value">One double-click</span></div>
-    <div class="spec"><span class="spec-label">Document library</span><span class="spec-value">~500MB curated field manuals</span></div>
     <div class="spec"><span class="spec-label">RAM required</span><span class="spec-value">8GB min · 16GB recommended</span></div>
     <div class="spec"><span class="spec-label">Telemetry</span><span class="spec-value green">Zero · air-gapped</span></div>
     <div class="spec"><span class="spec-label">Installation</span><span class="spec-value green">Nothing on host machine</span></div>
   </div>
 </section>
 
-<section class="cta-section">
-  <div class="cta-inner">
-    <div class="section-label">Early access</div>
-    <h2 class="cta-title fade-in">GET ON THE LIST.</h2>
-    <p class="cta-sub fade-in">We're looking for early testers. If you want to be among the first to run Grid Down, drop your email. No spam — just a heads up when it's ready.</p>
-    <form class="cta-form fade-in" onsubmit="handleSubmit(event,'cta-success')">
-      <input type="email" placeholder="your@email.com" required>
-      <button type="submit">Join Waitlist</button>
-    </form>
-    <div class="cta-note">Or reach us at <a href="mailto:hello@getgriddown.com">hello@getgriddown.com</a></div>
-    <div class="success-msg" id="cta-success" style="margin-top:16px">✓ You're on the list. We'll be in touch.</div>
-  </div>
-</section>
 
 <footer>
   <div class="footer-wrap">
     <div class="footer-brand">GRIDDOWN</div>
-    <div class="footer-note">A HoneyBadger Labs project &nbsp;·&nbsp; All included field manuals are public domain or freely licensed</div>
+    <div class="footer-note" style="color:#4a5a3a;">A HoneyBadger Labs project</div>
   </div>
 </footer>
 
