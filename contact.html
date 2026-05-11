@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — GRID DOWN</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive: #6b7d3c;
+  --bg: #080a06;
+  --bg2: #0d0f0a;
+  --border: rgba(107,125,60,0.2);
+  --border-dim: rgba(255,255,255,0.06);
+  --text: #e5e7eb;
+  --dim: #6b7280;
+  --white: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+.nav-wrap { background: #141a0d; width: 100%; }
+nav { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 16px 24px; }
+.nav-brand { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 4px; color: var(--white); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--olive); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.page { max-width: 640px; margin: 0 auto; padding: 96px 24px; }
+.section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--olive); margin-bottom: 18px; }
+.page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(32px, 5vw, 52px); font-weight: 700; letter-spacing: 3px; color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+.page-sub { font-size: 15px; line-height: 1.75; color: var(--dim); margin-bottom: 48px; max-width: 500px; }
+form { display: flex; flex-direction: column; gap: 16px; }
+label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #4b5563; display: block; margin-bottom: 6px; }
+input, textarea {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px;
+  padding: 12px 16px; border-radius: 4px; outline: none; transition: border-color 0.2s;
+}
+input::placeholder, textarea::placeholder { color: #374151; }
+input:focus, textarea:focus { border-color: var(--olive); background: rgba(107,125,60,0.05); }
+textarea { resize: vertical; min-height: 120px; }
+button {
+  background: var(--olive); color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  padding: 14px 28px; border: none; border-radius: 4px; cursor: pointer;
+  transition: background 0.2s; align-self: flex-start;
+}
+button:hover { background: #7d9445; }
+.success-msg { display: none; font-size: 13px; color: var(--olive); letter-spacing: 1px; text-transform: uppercase; padding: 16px 0; }
+footer { border-top: 1px solid var(--border-dim); margin-top: 96px; }
+.footer-wrap { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 28px 24px; flex-wrap: wrap; gap: 10px; }
+.footer-brand { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 3px; color: #374151; }
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <nav>
+    <a href="index.html" class="nav-brand">GRIDDOWN</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<section class="page">
+  <div class="section-label">Contact</div>
+  <h1 class="page-title">Get in Touch</h1>
+  <p class="page-sub">Questions about GRIDDOWN, early access, or partnership inquiries — send a message and we'll respond within one business day.</p>
+
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+    <input type="hidden" name="subject" value="New inquiry from getgriddown.io" />
+    <input type="hidden" name="from_name" value="GRIDDOWN Website" />
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required />
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+    <div class="success-msg" id="success">✓ Message received. We'll be in touch.</div>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">GRIDDOWN</div>
+    <div style="font-size:11px; color:#1f2937;">A HoneyBadger Labs project</div>
+  </div>
+</footer>
+
+<script>
+const form = document.querySelector('form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+  if (res.ok) {
+    form.style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  }
+});
+</script>
+</body>
+</html>
