@@ -208,8 +208,12 @@ footer { border-top: 1px solid var(--border-dim); }
         A <strong>complete AI-assisted knowledge system on a thumb drive</strong>. Plug into any computer, launch, and ask it anything — medical, farming, survival, security. Answers from vetted sources. Zero internet. Zero telemetry.
       </p>
       <div class="waitlist-wrap">
-        <form class="waitlist-form" onsubmit="handleSubmit(event,'hero-success')">
-          <input type="email" placeholder="youneedthis@email.com" required>
+        <form class="waitlist-form" id="waitlist-form">
+          <input type="hidden" name="access_key" value="25a1e24d-a254-4ea1-a1bc-26697f023d0c" />
+          <input type="hidden" name="subject" value="GRIDDOWN Waitlist Signup" />
+          <input type="hidden" name="from_name" value="GRIDDOWN Waitlist" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <input type="email" name="email" placeholder="youneedthis@email.com" required>
           <button type="submit">Join the Waitlist</button>
         </form>
         <div class="success-msg" id="hero-success">✓ You're on the list. We'll be in touch.</div>
@@ -316,13 +320,16 @@ footer { border-top: 1px solid var(--border-dim); }
 </footer>
 
 <script>
-function handleSubmit(e, id) {
+const waitlistForm = document.getElementById('waitlist-form');
+waitlistForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const email = e.target.querySelector('input[type="email"]').value;
-  window.location.href = 'mailto:hello@getgriddown.com?subject=Grid Down Early Access&body=Add me to the early access list: ' + email;
-  e.target.style.display = 'none';
-  document.getElementById(id).style.display = 'block';
-}
+  const data = new FormData(waitlistForm);
+  const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+  if (res.ok) {
+    waitlistForm.style.display = 'none';
+    document.getElementById('hero-success').style.display = 'block';
+  }
+});
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
