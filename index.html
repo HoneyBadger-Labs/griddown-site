@@ -160,13 +160,22 @@ nav {
 .cta-note { font-size: 12px; color: #374151; }
 .cta-note a { color: var(--olive); text-decoration: none; }
 
-footer { border-top: 1px solid var(--border-dim); }
+footer { border-top: 1px solid rgba(255,255,255,0.06); background: var(--bg); }
 .footer-wrap {
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1100px; margin: 0 auto; padding: 28px 24px; flex-wrap: wrap; gap: 10px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  max-width: 1100px; margin: 0 auto; padding: 48px 24px; gap: 32px;
 }
-.footer-brand { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 3px; color: #374151; }
-.footer-note { font-size: 11px; color: #1f2937; }
+.footer-col { display: flex; flex-direction: column; gap: 6px; }
+.footer-col-center { text-align: center; align-items: center; }
+.footer-col-right { text-align: right; align-items: flex-end; }
+.footer-logo { height: 48px; width: auto; display: block; }
+.footer-sub { font-size: 11px; color: #4b5563; }
+.footer-email { font-size: 13px; color: var(--olive); text-decoration: none; transition: color 0.2s; }
+.footer-email:hover { color: #7d9445; }
+@media (max-width: 768px) {
+  .footer-wrap { flex-direction: column; align-items: center; text-align: center; }
+  .footer-col, .footer-col-right { align-items: center; text-align: center; }
+}
 
 .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -311,8 +320,18 @@ footer { border-top: 1px solid var(--border-dim); }
 
 <footer>
   <div class="footer-wrap">
-    <div class="footer-brand">GRIDDOWN</div>
-    <div class="footer-note" style="color:#4a5a3a;">A HoneyBadger Labs project</div>
+    <div class="footer-col">
+      <img src="FB_LOGO.png" alt="GRIDDOWN" class="footer-logo">
+      <span class="footer-sub">A HoneyBadger Labs project</span>
+    </div>
+    <div class="footer-col footer-col-center">
+      <span class="footer-sub">Elizabeth City, North Carolina</span>
+      <span class="footer-sub">Serving the Albemarle region &amp; the Hampton Roads corridor.</span>
+    </div>
+    <div class="footer-col footer-col-right">
+      <a href="mailto:info@honeybadgerlabs.io" class="footer-email">info@honeybadgerlabs.io</a>
+      <span class="footer-sub">&copy; 2026 HoneyBadger Labs LLC</span>
+    </div>
   </div>
 </footer>
 
