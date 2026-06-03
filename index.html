@@ -8,7 +8,6 @@
 <link rel="canonical" href="https://www.getgriddown.com/" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
 <style>
 :root {
   --olive: #a08450;
@@ -144,27 +143,11 @@ nav {
 }
 .maps-body { font-size: 15px; line-height: 1.8; color: #9ca3af; }
 .map-frame {
-  position: relative;
   border: 1px solid rgba(107,125,60,0.3);
   border-radius: 10px; overflow: hidden;
   box-shadow: 0 0 0 1px rgba(107,125,60,0.08), 0 40px 80px rgba(0,0,0,0.7);
-  height: 480px;
 }
-#site-map { width: 100%; height: 100%; }
-.map-badge {
-  position: absolute; top: 14px; right: 14px; z-index: 10;
-  background: rgba(8,10,6,0.88);
-  border: 1px solid rgba(160,132,80,0.45);
-  border-radius: 4px; padding: 5px 11px;
-  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--olive); backdrop-filter: blur(4px);
-  pointer-events: none;
-}
-.map-caption {
-  margin-top: 12px; text-align: center;
-  font-size: 12px; color: #4b5563;
-}
-@media (max-width: 860px) { .map-frame { height: 320px; } }
+.map-frame img { width: 100%; display: block; opacity: 0.93; }
 
 /* SPECS */
 .specs-section { max-width: 760px; margin: 0 auto; padding: 80px 24px; text-align: center; }
@@ -354,10 +337,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); background: var(--bg); }
       <p class="maps-body fade-in">The drive includes full vector maps of the continental US — roads, terrain, cities, towns — rendered entirely on your machine. Drop waypoints, measure distances, get bearings. No tiles fetched from the internet. No connection required.</p>
     </div>
     <div class="map-frame">
-      <div id="site-map"></div>
-      <div class="map-badge">Online Preview — Fully Offline On Drive</div>
+      <img src="maps.png" alt="GRIDDOWN offline map — Norfolk, VA with waypoints">
     </div>
-    <p class="map-caption">Pan and zoom freely. On the drive, the same map runs with zero internet connection.</p>
   </div>
 </section>
 
@@ -410,33 +391,5 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script>
-const siteMap = new maplibregl.Map({
-  container: 'site-map',
-  style: {
-    version: 8,
-    sources: {
-      esri: {
-        type: 'raster',
-        tiles: ['https://server.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'],
-        tileSize: 256,
-        attribution: '© <a href="https://www.esri.com/" target="_blank">Esri</a>, © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
-      }
-    },
-    layers: [{ id: 'esri-tiles', type: 'raster', source: 'esri' }]
-  },
-  center: [-77.0369, 38.9072],
-  zoom: 11,
-  scrollZoom: false
-});
-siteMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
-siteMap.on('load', () => {
-  siteMap.resize();
-  new maplibregl.Marker({ color: '#a08450' })
-    .setLngLat([-77.0369, 38.9072])
-    .addTo(siteMap);
-});
-</script>
 </body>
 </html>
