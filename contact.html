@@ -59,6 +59,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); background: var(--bg); ma
 .footer-col-right { text-align: right; align-items: flex-end; }
 .footer-logo { width: 100%; max-width: 80px; height: auto; display: block; }
 .footer-sub { font-size: 11px; color: #4b5563; }
+.footer-link { font-size: 11px; color: #4b5563; text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: var(--olive); }
 .footer-email { font-size: 13px; color: var(--olive); text-decoration: none; transition: color 0.2s; }
 .footer-email:hover { color: #7d9445; }
 @media (max-width: 768px) {
@@ -117,6 +119,10 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); background: var(--bg); ma
     </div>
     <div class="footer-col footer-col-center">
       <span class="footer-sub">Elizabeth City, North Carolina</span>
+      <div style="display:flex;gap:16px;margin-top:4px;">
+        <a href="privacy.html" class="footer-link">Privacy</a>
+        <a href="terms.html" class="footer-link">Terms</a>
+      </div>
     </div>
     <div class="footer-col footer-col-right">
       <a href="mailto:info@honeybadgerlabs.io" class="footer-email">info@honeybadgerlabs.io</a>
